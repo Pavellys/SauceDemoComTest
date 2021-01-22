@@ -4,7 +4,7 @@ import test_data.ExpResConst;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class ProductsTests extends BaseTest {
+public class ProductsTest extends BaseTest {
     @Test
     public void addProductToCartTest() {
         productsPage.openPage()

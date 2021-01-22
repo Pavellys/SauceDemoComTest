@@ -2,7 +2,7 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-public class LoginTests extends BaseTest{
+public class LoginTest extends BaseTest{
     @DataProvider(name = "login test")
     public Object[][] inputForITechTask() {
         return new Object[][]{
