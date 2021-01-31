@@ -32,6 +32,11 @@ jobs:
       - run:
           name: Running tests
           command: mvn clean install
+          when: always
+      -store_test_result:
+        path: target/surefire-reports/junitreports
+      -store_artifacts:
+        path: target/site/allure-maven-plugin/
 workflows:
   version: 2
   commit:
