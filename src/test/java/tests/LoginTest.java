@@ -9,7 +9,7 @@ public class LoginTest extends BaseTest{
     public Object[][] inputForITechTask() {
         return new Object[][]{
                 {System.getenv().getOrDefault("username", PropertyReader.getProperty("username")),
-                        System.getenv().getOrDefault("password", PropertyReader.getProperty("password"))}
+                        System.getenv().getOrDefault("password", PropertyReader.getProperty("password")), "Hello"}
         };
     }
 
