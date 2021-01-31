@@ -6,7 +6,7 @@ public class LoginTest extends BaseTest{
     @DataProvider(name = "login test")
     public Object[][] inputForITechTask() {
         return new Object[][]{
-                {"standard_user", "secret_sauce","good"}
+                {System.getenv("username"), System.getenv("password"),"good"}
         };
     }
 
