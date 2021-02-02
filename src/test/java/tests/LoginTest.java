@@ -2,11 +2,14 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import utils.PropertyReader;
+
 public class LoginTest extends BaseTest{
     @DataProvider(name = "login test")
     public Object[][] inputForITechTask() {
         return new Object[][]{
-                {"standard_user", "secret_sauce","good"}
+                {System.getenv().getOrDefault("username", PropertyReader.getProperty("username")),
+                        System.getenv().getOrDefault("password", PropertyReader.getProperty("password")), "Hello"}
         };
     }
 
