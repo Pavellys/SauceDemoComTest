@@ -1,45 +1,39 @@
 pipeline {
-    agent any
+   agent any
 
-    tools {
-        // Install the Maven version configured as "M3" and add it to the path.
-        maven "M3"
+   tools {
+      // Install the Maven version configured as "M3" and add it to the path.
+      maven "M3"
+   }
+    triggers {
+        cron('0 8 * * *')
     }
-parameters {
- gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
-}
+    parameters {
+        gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+    }
 
+   stages {
+      stage('Testing') {
+         steps {
+            // Get some code from a GitHub repository
+            git branch: "${params.BRANCH}", url: 'https://github.com/Pavellys/SauceDemoComTest.git'
 
-stages {
-  stage('Run test') {
-     steps {
-        // Get some code from a GitHub repository
-        git branch: "${params.BRANCH}", url: 'https://github.com/dzmitryrak/AllureReporting.git'
-     }
-  }
-}
-    stages {
-        stage('Build') {
-            steps {
-                // Get some code from a GitHub repository
-                git 'https://github.com/Pavellys/SauceDemoComTest.git'
+            // Run Maven on a Unix agent.
+            sh "mvn clean test"
 
-                // Run Maven on a Unix agent.
-                //sh "mvn -Dmaven.test.failure.ignore=true clean package"
+            // To run Maven on a Windows agent, use
+            // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+         }
 
-                // To run Maven on a Windows agent, use
-                bat "mvn clean test"
+         post {
+            // If Maven was able to run the tests, even if some of the test
+            // failed, record the test results and archive the jar file.
+            success {
+               junit '**/target/surefire-reports/TEST-*.xml'
             }
-
-            post {
-                // If Maven was able to run the tests, even if some of the test
-                // failed, record the test results and archive the jar file.
-                success {
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                }
-            }
-        }
-                stage('Allure reports') {
+         }
+      }
+      stage('Reporting') {
          steps {
              script {
                      allure([
@@ -51,8 +45,7 @@ stages {
                      ])
              }
          }
-}
-
-    }
+        }
+   }
 }
 
