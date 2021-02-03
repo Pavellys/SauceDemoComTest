@@ -19,10 +19,10 @@ pipeline {
             git branch: "${params.BRANCH}", url: 'https://github.com/Pavellys/SauceDemoComTest.git'
 
             // Run Maven on a Unix agent.
-            sh "mvn clean test"
+            //sh "mvn clean test"
 
             // To run Maven on a Windows agent, use
-            // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+            bat "mvn clean test"
          }
 
          post {
@@ -33,7 +33,7 @@ pipeline {
             }
          }
       }
-      stage('Reporting') {
+      stage('Allure reporting') {
          steps {
              script {
                      allure([
