@@ -26,10 +26,6 @@ public class BaseTest implements TestConstants {
     @BeforeMethod
     public void initTest() {
         WebDriverManager.chromedriver().setup();
-        ChromeOptions chromeOptions = new ChromeOptions();
-        if(System.getProperty("headless").equals("true")){
-            chromeOptions.addArguments("headless");
-        }
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);

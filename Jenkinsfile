@@ -24,7 +24,6 @@ pipeline {
 
             // To run Maven on a Windows agent, use
             bat "mvn clean test"
-            bat "mvn clean test -DHeadless=$(params.HEADLESS)"
          }
 
          post {
