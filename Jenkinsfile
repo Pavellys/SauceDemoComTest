@@ -10,6 +10,7 @@ pipeline {
     }
     parameters {
         gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+        booleanParam(defaultValue: true, description: 'Enable/Disable Headless option', name: 'HEADLESS')
     }
 
    stages {
@@ -23,6 +24,7 @@ pipeline {
 
             // To run Maven on a Windows agent, use
             bat "mvn clean test"
+            bat "mvn clean test -DHeadless=$(param.HEADLESS)"
          }
 
          post {
