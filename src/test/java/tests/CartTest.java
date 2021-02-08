@@ -8,14 +8,12 @@ public class CartTest extends BaseTest{
     public void buttonCheckout(){
         cartPage.openPage()
                 .clickToCheckoutButton();
-        checkoutPage.waitForPageCheckOutOpened();
         Assert.assertEquals(cartPage.getURL(), CHECKOUT_URL,"error");
     }
     @Test
     public void buttonContinueShopping(){
-        cartPage.openPage()
-                .clickToContinueButton();
-        checkoutPage.waitForPageContinueOpened();
+       cartPage.openPage()
+               .clickToContinueButton();
         Assert.assertEquals(cartPage.getURL(), PRODUCTS_URL,"error");
     }
 }

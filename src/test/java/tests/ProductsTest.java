@@ -8,8 +8,8 @@ public class ProductsTest extends BaseTest {
     @Test
     public void addProductToCartTest() {
         productsPage.openPage()
-                .addProductToCart(TEST_PRODUCT);
-        cartPage.openPage();
+                .addProductToCart(TEST_PRODUCT)
+                .clickButtonCart();
         Assert.assertEquals(cartPage.getQuantity(TEST_PRODUCT), ExpResConst.QUANTITY_IN_CART, "Quantity not right");
         Assert.assertEquals(cartPage.getPrice(TEST_PRODUCT), ExpResConst.PRICE_IN_CART, "Price not right");
     }

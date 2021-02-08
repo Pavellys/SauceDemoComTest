@@ -1,10 +1,12 @@
 package pages;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+@Log4j2
 public class LoginPage extends BasePage {
     @FindBy(id = "user-name")
     WebElement usernameInput;
@@ -28,11 +30,13 @@ public class LoginPage extends BasePage {
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);
         loginButton.click();
+        log.info("Input username and password in the login fields, and click on the login button");
         return this;
     }
 
     public LoginPage openPage() {
         driver.get(SAUCE_DEMO_URL);
+        log.info("Opening web page: " + SAUCE_DEMO_URL);
         return this;
     }
 
