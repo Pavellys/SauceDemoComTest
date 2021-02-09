@@ -30,13 +30,13 @@ public class LoginPage extends BasePage {
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);
         loginButton.click();
-        log.info("Input username and password in the login fields, and click on the login button");
+        log.info(String.format("Input %s and %s in the login fields, and click on the login button", username, password));
         return this;
     }
 
     public LoginPage openPage() {
-        driver.get(SAUCE_DEMO_URL);
         log.info("Opening web page: " + SAUCE_DEMO_URL);
+        driver.get(SAUCE_DEMO_URL);
         return this;
     }
 

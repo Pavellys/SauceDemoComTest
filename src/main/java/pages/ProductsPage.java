@@ -39,81 +39,85 @@ public class ProductsPage extends BasePage {
     }
 
     public ProductsPage openPage(){
-        driver.get(PRODUCTS_URL);
         log.info("Opening web page 'Products' " + PRODUCTS_URL);
+        driver.get(PRODUCTS_URL);
         return this;
     }
 
     public ProductsPage addProductToCart(String productName) {
+        log.info("Clicking on  button 'Add products to cart' " + productName);
         driver.findElement(By.xpath(String.format(ADD_PRODUCT_TO_CART, productName))).click();
-        log.info("Clicking on  button 'Add products to cart'");
         return this;
     }
 
     public ProductsPage changeSortLowHigh() {
-        productSortPanelLowHigh.click();
         log.info("Clicking in sort panel on field 'Low-High'");
+        productSortPanelLowHigh.click();
         return this;
     }
 
     public ProductsPage changeSortHighLow() {
-        productSortPanelHighLow.click();
         log.info("Clicking in sort panel on field 'High-Low'");
+        productSortPanelHighLow.click();
         return this;
     }
 
     public ProductsPage changeSortZ_A() {
-        productSortPanelZA.click();
         log.info("Clicking in sort panel on field 'Z-A'");
+        productSortPanelZA.click();
         return this;
     }
 
     public ProductsPage changeSortA_Z() {
-        productSortPanelAZ.click();
         log.info("Clicking in sort panel on field 'A-Z'");
+        productSortPanelAZ.click();
         return this;
     }
 
     public String checkingFirstProduct() {
-        log.info("Getting first product");
-        return driver.findElements(By.xpath(PRODUCTS_ELEMENTS)).get(0).getText();
+        String firstProduct = driver.findElements(By.xpath(PRODUCTS_ELEMENTS)).get(0).getText();
+        log.info("Getting first product " + firstProduct);
+        return firstProduct;
     }
 
     public String checkingLastProduct() {
-        log.info("Getting last product");
-        return driver.findElements(By.xpath(PRODUCTS_ELEMENTS)).get(5).getText();
+        String lastProduct = driver.findElements(By.xpath(PRODUCTS_ELEMENTS)).get(5).getText();
+        log.info("Getting last product " + lastProduct);
+        return lastProduct;
     }
 
     public ProductsPage clickSideBar(){
-        buttonSideBar.click();
         log.info("Opening sidebar on " + PRODUCTS_URL);
+        buttonSideBar.click();
         return this;
     }
 
     public ProductsPage clickAllItemFromSideBar(){
-        allItemSideBar.click();
         log.info("Clicking on button 'All item' from sidebar");
+        allItemSideBar.click();
         return this;
     }
 
     public ProductsPage clickAboutFromSideBar(){
-        aboutSideBar.click();
         log.info("Clicking on button 'About' from sidebar");
+        aboutSideBar.click();
         return this;
     }
 
     public ProductsPage clickLogoutFromSideBar(){
-        logoutSideBar.click();
         log.info("Clicking on button 'Logout' from sidebar");
+        logoutSideBar.click();
         return this;
     }
 
     public String getActualURL(){
-        log.info("Getting current url");
-        return driver.getCurrentUrl();
+        String actualUrl = driver.getCurrentUrl();
+        log.info("Getting current url " + actualUrl);
+        return actualUrl;
     }
 
     public ProductsPage clickButtonCart(){
+        log.info("Clicking on button 'Cart'");
         buttonCart.click();
         return this;
     }

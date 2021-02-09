@@ -32,29 +32,30 @@ public class CartPage extends BasePage {
     }
 
     public CartPage clickToCheckoutButton() {
-        buttonCheckout.click();
         log.info("Clicking on button 'Checkout' ");
+        buttonCheckout.click();
         return this;
     }
 
     public CartPage clickToContinueButton(){
+        log.info("Clicking on button 'Continue' ");
         buttonContinueShopping.click();
-        log.info("Clicking on button 'Continue'");
         return this;
     }
 
     public String getURL() {
-        log.info("Getting current URL'");
-        return driver.getCurrentUrl();
+        String getUrl = driver.getCurrentUrl();
+        log.info("Getting current URL' " + getUrl);
+        return getUrl;
     }
 
     public String getPrice(String product){
-        log.info("Getting product price");
+        log.info("Getting product price " + product);
         return driver.findElement(By.xpath(String.format(CART_PRICE, product))).getText();
     }
 
     public String getQuantity(String product){
-        log.info("Getting product quantity");
+        log.info("Getting product quantity " + product);
         return driver.findElement(By.xpath(String.format(CART_QUANTITY, product))).getText();
     }
 }
