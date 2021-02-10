@@ -27,10 +27,10 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage login(String username, String password) {
+        log.info(String.format("Input %s and %s in the login fields, and click on the login button", username, password));
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);
         loginButton.click();
-        log.info(String.format("Input %s and %s in the login fields, and click on the login button", username, password));
         return this;
     }
 
